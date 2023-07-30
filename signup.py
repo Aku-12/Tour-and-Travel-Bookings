@@ -38,7 +38,7 @@ radiobutton1=Radiobutton(frame,text="female",value="female",var=gender)
 radiobutton1.place(x=350,y=450)
 def back():
     display.destroy()
-    import pr
+    import Tour
 
 def login():
     display.destroy()
