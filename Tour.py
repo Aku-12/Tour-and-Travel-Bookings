@@ -859,11 +859,27 @@ def on_enter_contact(e):
     frame_a.config(width=700,height=500)
     frame_a.place(x=1200,y=70)
     clear_frame() # clearing the frame before placing the buttons hello and hi...
+    image=Image.open("Akash.png")
+    resized_image=image.resize((200,200))
+    converted =ImageTk.PhotoImage(resized_image)
+    label= Label(frame_a,image=converted)
+    label.image=converted
+    label.place(x=0,y=0)
 
-    create_button(frame_a, "I am krishna", 50, 50,hello) # passing the arguments to the parameter...
+    image=Image.open("Krishna.png")
+    resized_image=image.resize((200,200))
+    converted =ImageTk.PhotoImage(resized_image)
+    label= Label(frame_a,image=converted)
+    label.image=converted
+    label.place(x=210,y=0)
 
-    create_button(frame_a, "Fine", 150, 50,hello) 
-    
+    image=Image.open("Sabin.png")
+    resized_image=image.resize((200,200))
+    converted =ImageTk.PhotoImage(resized_image)
+    label= Label(frame_a,image=converted)
+    label.image=converted
+    label.place(x=420,y=0)
+
 #Create frame when hovered over account frame
 def on_enter_account(e):
     frame_a.config(width=220,height=120)
