@@ -2,6 +2,9 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import messagebox
+import mysql.connector as mysql
+from tkcalendar import Calendar
+from datetime import datetime
 
 root = Tk()
 root.geometry("1500x1500")
@@ -18,107 +21,146 @@ def create_button(frame, text, x, y,ca): # creating the sub button function usin
     button.place(x=x, y=y)
     return button
 
-def payment():
-   root_book.destroy()
-   a=Toplevel(root)
-   a.pack() 
-   
+# def payment():
+#    root_book.destroy()
+#    a=Toplevel(root)
+#    a.pack() 
+def submit(): 
+  
+    name = name_entry.get()
+    address = address_entry.get()
+    email= email_entry.get()
+    contact_no = contact_entry.get()
+    destination = destination_entry.get()
+    no_of_visitors = visitors_entry.get()
+    no_of_guides = guides_entry.get()
+    start_date = a
+    end_date = b
+ 
+    if name=="" or address=="" or email=="" or contact_no=="" or destination=="" or no_of_visitors=="" or no_of_guides =="" or start_date=="" or end_date =="":
+        messagebox.showinfo("Insert status","All fields are required")
+    else:
+        con = mysql.connect(host="localhost",user="root",password="12345",database="form")
+        cursor = con.cursor()
+        cursor.execute('INSERT INTO details VALUES("'+name+'","'+ email +'","'+ contact_no +'","'+ address +'","'+destination+'","'+no_of_visitors+'","'+no_of_guides+'","'+start_date+'","'+end_date+'")')
+        messagebox.showinfo("Insert status","Form submitted successfully")
+        con.commit()
+        con.close()
+def select():
+    def get_selected_date():
+        global a
+        a = cal.get_date()
+        label.config(text="selected date"+cal.get_date())
+
+        start_date.config(text=cal.get_date())
+        root1.destroy()
+    root1 = Tk()
+    root1.eval('tk::PlaceWindow . center')
+    root1.title("Calendar Example")
+
+
+# Create a Calendar widget
+    cal = Calendar(root1, mindate=datetime(2023,9,30),selectmode='day', date_pattern='yyyy-mm-dd',g="blue")
+    cal.pack(padx=10, pady=10)
+    cal.bind("<<CalendarSelected>>")
+    button = Button(root1, text="Get Selected Date", command=get_selected_date)
+    button.pack(pady=5)
+    label=Label(root1,text="Selected date")
+    label.pack(pady=5)
+
+def select1():
+    def get_selected_date():
+        global b
+        b = cal1.get_date()
+        label.config(text="selected date"+cal1.get_date())
+        end_date.config(text=cal1.get_date())
+        root1.destroy()
+    root1 = Tk()
+    root1.eval('tk::PlaceWindow . center')
+    root1.title("Calendar Example")
+
+    cal1 = Calendar(root1, mindate=datetime(2023,9,30),selectmode='day', date_pattern='yyyy-mm-dd',g="blue")
+    cal1.pack(padx=10, pady=10)
+    cal1.bind("<<CalendarSelected>>")
+    button = Button(root1, text="Get Selected Date", command=get_selected_date)
+    button.pack(pady=5)
+    label=Label(root1,text="Selected date")
+    label.pack(pady=5)
+ 
 
 def booking():
    
-     global root_book
+    #  global root_book
+    #  global frame_book
+    #  root_book=Toplevel(root)
+    #  root_book.geometry("1200x500")
+    #  root_book.resizable(0,0)
+    #  frame_book=Frame(root_book,width=700,height=320)
+    #  frame_book.place(x=300,y=100)
+    #  def booking():
+    #  '''Create a booking function which displays the form for filling details in order to book the respective tour'''
+    #  def exit():
+    #         root_book.destroy()
+     global start_date
+     global end_date
      global frame_book
+     global name_entry
+     global address_entry
+     global contact_entry
+     global email_entry
+     global destination_entry
+     global visitors_entry
+     global guides_entry
      root_book=Toplevel(root)
      root_book.geometry("1200x500")
      root_book.resizable(0,0)
      frame_book=Frame(root_book,width=700,height=320)
      frame_book.place(x=300,y=100)
-    
-     but_Next=Button(frame_book,text="Next",font=18,width=20)
-     create_button(frame_book,"Next",300,290,payment)
+
+     end_date=Button(frame_book,text="Select end date...",command=select1)
+     end_date.place(x=150,y=250)
+     start_date=Button(frame_book,text="Select start date...",command=select)
+     start_date.place(x=450,y=200)
+     but_Next=Button(frame_book,text="Submit",font=18,width=13,command=submit)
+     but_Next.place(x=350,y=240)
      label_book1=Label(frame_book,text=" Tour Booking form",font=("Arial",24,"bold"))
      label_book1.place(x=100,y=0)
 
-     months=StringVar()
+     
 
-     combobox1 =ttk.Combobox(frame_book,textvariable=months,values=("jan","feb","march","april","may","june","july","august","september","october","november","december"),width=5,state="readonly")
-     combobox1.place(x=500,y=250)
-     day=StringVar()
-     num=[]
-     for i in range(1,33):
-            num.append(i)
 
-     combobox1 =ttk.Combobox(frame_book,textvariable=day,values=num,width=2,state="readonly")
-     combobox1.place(x=570,y=250)
-     year= StringVar()
-     spinbox = Spinbox(frame_book,textvariable=year,from_=2023,to_=2100,state="readonly",width=4)
-     spinbox.place(x=625,y=250)
-
-     months=StringVar()
-
-     combobox1 =ttk.Combobox(frame_book,textvariable=months,values=("jan","feb","march","april","may","june","july","august","september","october","november","december"),width=5,state="readonly")
-     combobox1.place(x=150,y=250)
-     day=StringVar()
-     num=[]
-     for i in range(1,33):
-            num.append(i)
-
-     combobox1 =ttk.Combobox(frame_book,textvariable=day,values=num,width=2,state="readonly")
-     combobox1.place(x=220,y=250)
-     year= StringVar()
-     spinbox = Spinbox(frame_book,textvariable=year,from_=2023,to_=2100,state="readonly",width=4)
-     spinbox.place(x=275,y=250)
-
-     label_name=Label(frame_book,text="Name")
+     label_name=Label(frame_book,text="Full Name")
      label_name.place(x=0,y=50)
      label_contact=Label(frame_book,text="Contact No")
      label_contact.place(x=350,y=50)
-     label_email=Label(frame_book,text="Email")
+     label_email=Label(frame_book,text="Address")
      label_email.place(x=350,y=100)
-     label_address=Label(frame_book,text="Address")
+     label_address=Label(frame_book,text="Destination")
      label_address.place(x=350,y=150)
-     label_surname=Label(frame_book,text="Surame")
+     label_surname=Label(frame_book,text="Email")
      label_surname.place(x=0,y=100)
      label_visitors=Label(frame_book,text="Number of Visitors")
      label_visitors.place(x=0,y=150)
      label_guides=Label(frame_book,text="Number of Tour Guides")
      label_guides.place(x=0,y=200)
-     label_startdate=Label(frame_book,text="Start Date")
+     label_startdate=Label(frame_book,text="End Date")
      label_startdate.place(x=0,y=250)
-     label_enddate=Label(frame_book,text="End Date")
-     label_enddate.place(x=370,y=250)
-     label_destination=Label(frame_book,text="Destination")
-     label_destination.place(x=350,y=200)
-     name_entry=Entry(frame_book,text="")
-     name_entry.place(x=100,y=50)
-     surname_entry=Entry(frame_book,text="")
-     surname_entry.place(x=100,y=100)
-     contact_entry=Entry(frame_book,text="")
+     label_enddate=Label(frame_book,text="Start Date")
+     label_enddate.place(x=350,y=200)
+     name_entry=Entry(frame_book)
+     name_entry.place(x=150,y=50)
+     email_entry=Entry(frame_book)
+     email_entry.place(x=150,y=100)
+     contact_entry=Entry(frame_book)
      contact_entry.place(x=450,y=50)
-     email_entry=Entry(frame_book,text="")
-     email_entry.place(x=450,y=100)
-     address_entry=Entry(frame_book,text="")
-     address_entry.place(x=450,y=150)
-     destination_entry=Entry(frame_book,text="",show="*")
-     destination_entry.place(x=450,y=200)
-    
-   
-     no_of_visitors=StringVar()
-     num=[]
-     for i in range(1,31):
-          num.append(i)
-     combobox1=ttk.Combobox(frame_book,textvariable=no_of_visitors,values=num,state="readonly",width=10)
-     combobox1.place(x=150,y=150)
-    
-
-     no_of_visitors=StringVar()
-     num=[]
-     for i in range(1,6):
-          num.append(i)
-     combobox1=ttk.Combobox(frame_book,textvariable=no_of_visitors,values=num,state="readonly",width=10)
-     combobox1.place(x=150,y=200)
-# frame1=Frame()
-
+     address_entry=Entry(frame_book)
+     address_entry.place(x=450,y=100)
+     destination_entry=Entry(frame_book)
+     destination_entry.place(x=450,y=150)
+     visitors_entry=Entry(frame_book)
+     visitors_entry.place(x=150,y=150)
+     guides_entry=Entry(frame_book)
+     guides_entry.place(x=150,y=200)
 
 def everest1():
     frame_a.config(width=1920,height=1080)
@@ -773,7 +815,22 @@ def hello():
     labeel9=Label(frame_a,text="Day1: Kathmandu to Shree Ram a Mandir (225 km) 7/8 hours. Overnight Stay. \nDay2:     Puja and full day sightseeing. Overnight Stay                      \nDay3: Drive back to Kathmandu by vehicles-7/8 hours.     ",font=("Avenir",17))
     labeel9.place(x=850,y=660)
 
-        
+def submit3():
+    problems_text1 = problems_text.get("1.0", "end-1c")
+    feedback_text1 = feedback_text.get("1.0", "end-1c")
+    username1= username_entry.get()
+    con = mysql.connect(host="localhost",user="root",password="12345",database="help")
+    cursor = con.cursor()
+    cursor.execute('INSERT INTO feed VALUES("'+username1+'","'+problems_text1+'","'+feedback_text1+'")')
+    r='INSERT INTO feed VALUES("'+username1+'","'+problems_text1+'","'+feedback_text1+'")'
+    print(r)
+    if problems_text1=="" or feedback_text1 == "" or username1=="":
+            messagebox.showerror("Error","All Fields are required")
+    else:
+            messagebox.showinfo("Success","Data submitted successfully")
+    con.commit()
+    con.close()
+     
 def hi():
     clear_frame() 
     frame_a.config(width=800)
@@ -782,16 +839,17 @@ def hi():
 
 def log_in():
     root.destroy()
-    import signup 
+    import loginui 
 
 def signup():
     root.destroy()
-    import signup
+    import finalsignin
 
 
 def on_enter_home():
     root.destroy()
     import Tour
+
 
 def on_enter_destination(e):
     frame_a.config(width=1600,height=150)
@@ -836,6 +894,9 @@ def on_enter_adventure(e):
 
 
 def on_enter_help(e):
+    global problems_text
+    global feedback_text
+    global username_entry
     frame_a.config(width=1150,height=350)
     frame_a.place(x=700,y=70)
     clear_frame()
@@ -850,8 +911,9 @@ def on_enter_help(e):
     feedback_text.place(x=590,y=60)
     username_entry=Entry(frame_a,width=63)
     username_entry.place(x=120,y=260,height=35)
-    submit_button=Button(frame_a,text="Submit",font=("Arial",16,"bold"),width=15,bg="#FFFACD")
+    submit_button=Button(frame_a,text="Submit",font=("Arial",16,"bold"),width=15,bg="#FFFACD",command=submit3)
     submit_button.place(x=600,y=260)
+
     
     
   
