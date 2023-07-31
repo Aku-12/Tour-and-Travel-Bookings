@@ -125,10 +125,7 @@ def everest1():
     frame_a.place(x=0,y=60)
     frame_a
     clear_frame()
-    # label1=Label(frame_everest,text="this is the good adventerous places of Nepal")
-    # label1.place(x=100,y=500)
-    # button_booking=Button(frame_everest,text="Book Your tour ",font=40,fg="green",command=booking)
-    # button_booking.configure(width=10,height=2)
+    
 
     image=Image.open("MountEverest.webp")
     resized_image=image.resize((960,550))
@@ -143,7 +140,7 @@ def everest1():
     label.image=converted
     label.place(x=960,y=0)
 
-    # create_level(frame_a,"Everest Base Camp Trek",30,560)
+    
     label=Label(frame_a,text="Everest Base Camp Trek",font=("Arial",18,"bold"),fg="blue",bg="#FFFACD")
     label.place(x=30,y=580)
     create_level(frame_a,"From Kathmandu to Solukhumbu",540,580)
