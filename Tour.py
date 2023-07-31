@@ -856,7 +856,7 @@ def on_enter_help(e):
     
   
 def on_enter_contact(e):
-    frame_a.config(width=700,height=500)
+    frame_a.config(width=675,height=500)
     frame_a.place(x=1200,y=70)
     clear_frame() # clearing the frame before placing the buttons hello and hi...
     image=Image.open("Akash.png")
@@ -871,14 +871,14 @@ def on_enter_contact(e):
     converted =ImageTk.PhotoImage(resized_image)
     label= Label(frame_a,image=converted)
     label.image=converted
-    label.place(x=210,y=0)
+    label.place(x=235,y=0)
 
     image=Image.open("Sabin.png")
     resized_image=image.resize((200,200))
     converted =ImageTk.PhotoImage(resized_image)
     label= Label(frame_a,image=converted)
     label.image=converted
-    label.place(x=420,y=0)
+    label.place(x=470,y=0)
 
 #Create frame when hovered over account frame
 def on_enter_account(e):
