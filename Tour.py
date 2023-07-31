@@ -343,7 +343,7 @@ def rara():
     label.image=converted
     label.place(x=960,y=0)
 
-    # create_level(frame_a,"Everest Base Camp Trek",30,560)
+    
     label=Label(frame_a,text="Trek to Rara Lake",font=("Arial",18,"bold"),fg="blue",bg="#FFFACD")
     label.place(x=30,y=580)
     create_level(frame_a,"From Kathmandu to Mugu",540,580)
@@ -383,7 +383,7 @@ def khaptad():
     label.image=converted
     label.place(x=960,y=0)
 
-    # create_level(frame_a,"Everest Base Camp Trek",30,560)
+    
     label=Label(frame_a,text="Tour to Khaptad(Doti)",font=("Arial",18,"bold"),fg="blue",bg="#FFFACD")
     label.place(x=30,y=580)
     create_level(frame_a,"From Kathmandu to Doti",540,580)
@@ -408,8 +408,7 @@ def pokhara():
      frame_a.config(width=1920,height=1080)
      frame_a.place(x=0,y=60)
      clear_frame()
-    #  frame_a=Frame(root,width=1000,height=1200)
-    #  frame_pokhara1.place(x=0,y=35)
+    
      image=Image.open("pkr.jpg")
      resized_image=image.resize((1200,600))
      converted =ImageTk.PhotoImage(resized_image)
@@ -429,8 +428,7 @@ def pokhara():
      label= Label(frame_a,image=converted)
      label.image=converted
      label.place(x=600,y=600)
-    #  frame_pokhara_overview=Frame(frame1,width=400,height=1200)
-    #  frame_pokhara_overview.place(x=1000,y=35)
+    
      label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
      label_pokhara_overview.place(x=1480,y=10)
      label_pokhara_overview=Label(frame_a,text="Paragliding in pokhara has become one of the most         \npopular adventerous places in Nepal.You can join         \nparaglidingin Pokhara any time and month of the           \n year as long as it’s not raining and the thermals are active.\n It is operated throughout the year. The busy season is in \nSeptember/October/November/December and February\nMarch/April/May.\t\t",font=("calibri",21,"bold"),bg="#FFFACD")
@@ -476,8 +474,7 @@ def nagarkot():
      label= Label(frame_a,image=converted)
      label.image=converted
      label.place(x=600,y=600)
-    #  frame_pokhara_overview=Frame(frame1,width=400,height=1200)
-    #  frame_pokhara_overview.place(x=1000,y=35)
+    
      label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
      label_pokhara_overview.place(x=1480,y=10)
      label_pokhara_overview=Label(frame_a,text="Nagarkot Dhulikhel Trek is one of the most popular\n trekking outside Kathmandu. Nagarkot is located just \n35km far from Kathmandu. We recommend you to\n take Nagarkot and Dhulikhel Trek if you are looking for\n short treks in Nepal. The nearest hill station from\n Kathmandu- Nagarkot view tower offers spectacular\n views of Central Himalaya including Langtang Mountain,\n Gaurishankar Mountain,Ganesh Mountain and Manaslu.",font=("calibri",21,"bold"),bg="#FFFACD")
@@ -503,8 +500,7 @@ def koshi():
      frame_a.config(width=1920,height=1080)
      frame_a.place(x=0,y=60)
      clear_frame()
-    #  frame_a=Frame(root,width=1000,height=1200)
-    #  frame_pokhara1.place(x=0,y=35)
+    
      image=Image.open("Koshi_rafting.jpg")
      resized_image=image.resize((1200,600))
      converted =ImageTk.PhotoImage(resized_image)
@@ -524,8 +520,7 @@ def koshi():
      label= Label(frame_a,image=converted)
      label.image=converted
      label.place(x=600,y=600)
-    #  frame_pokhara_overview=Frame(frame1,width=400,height=1200)
-    #  frame_pokhara_overview.place(x=1000,y=35)
+    
      label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
      label_pokhara_overview.place(x=1480,y=10)
      label_pokhara_overview=Label(frame_a,text="Bhote Koshi river rafting provide the closet Grade \nIV to V whitewater rafting experience on an extremely\n powerful rapid and whirlpool. Bhote Koshi river originates\n from the Tibetan plateau, which can easily access \nbecause it is not so away from Kathmandu. Bhote Koshi \nrafting is one of the best whitewater river rafting in \nthe world with full of excitement and fun.",font=("calibri",21,"bold"),bg="#FFFACD")
@@ -572,8 +567,7 @@ def bhotekoshi():
      label= Label(frame_a,image=converted)
      label.image=converted
      label.place(x=600,y=600)
-    #  frame_pokhara_overview=Frame(frame1,width=400,height=1200)
-    #  frame_pokhara_overview.place(x=1000,y=35)
+    
      label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
      label_pokhara_overview.place(x=1480,y=10)
      label_pokhara_overview=Label(frame_a,text="Bungee jumping activity found its first ever spot at the\n Bhote Koshi gorge in Nepal. And now it is one of \nthe most famous spots for bungee jumping in the\n whole world. The gorge is located near Nepal-Tibet \nborder and has a height of 160 meters. What makes\n it special is the fact that is the highest bungee jumping\n in Nepal as well as the world. Flowing below the jump \nis the Bhote Koshi river which will give you the extra fun.",font=("calibri",21,"bold"),bg="#FFFACD")
@@ -619,8 +613,7 @@ def mounteverest():
      label= Label(frame_a,image=converted)
      label.image=converted
      label.place(x=600,y=600)
-    #  frame_pokhara_overview=Frame(frame1,width=400,height=1200)
-    #  frame_pokhara_overview.place(x=1000,y=35)
+    
      label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
      label_pokhara_overview.place(x=1480,y=10)
      label_pokhara_overview=Label(frame_a,text="The Everest region in Nepal is more than just climbing \nand trekking, it is a life-changing experience and some\n see it as a journey close to achieving Nirvana,Located\n in the northeastern province of Nepal, this region is \nin a world of its own with vast glaciers, icefalls, the \nhighest mountains, deep valleys, precarious settlem-\nents, and hardy people challenging the harshest conditions \nthrown at them by nature in the thin air of high altitude.\t ",font=("calibri",21,"bold"),bg="#FFFACD")
@@ -759,8 +752,7 @@ def hello():
     laabel.place(x=30,y=510)
     laabela=Label(frame_a,text="From kathmandu to Dhanusha",font=("Avenir",24,"bold"),fg="green")
     laabela.place(x=470,y=510)
-    # frame_duration=Frame(frame_a,width=190,height=95)
-    # frame_duration.place(x=30,y=550)
+    
     labeel1=Label(frame_a,text="Duration\n3 days",font=("Avenir",18,"bold"),fg="grey")
     labeel1.place(x=30,y=560)
     labeel2=Label(frame_a,text="Tour languages\nEnglish  Nepali",font=("Avenir",18,"bold"),fg="grey")
@@ -860,12 +852,7 @@ def on_enter_help(e):
     username_entry.place(x=120,y=260,height=35)
     submit_button=Button(frame_a,text="Submit",font=("Arial",16,"bold"),width=15,bg="#FFFACD")
     submit_button.place(x=600,y=260)
-    # create_button(frame_a,"Submit",460,300,formdetails)
-    # problems_entry=Entry(frame_a,width=50)
-    # problems_entry.place(x=400,y=90,height=23)
-    # solutions_entry=Entry(frame_a,width=50)
-    # solutions_entry.place(x=400,y=130,height=23)
-    #help and solution
+    
     
   
 def on_enter_contact(e):
