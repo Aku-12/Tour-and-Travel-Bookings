@@ -856,8 +856,9 @@ def on_enter_help(e):
     
   
 def on_enter_contact(e):
-    frame_a.config(width=675,height=500)
-    frame_a.place(x=1200,y=70)
+    
+    frame_a.config(width=1160,height=400)
+    frame_a.place(x=600,y=70)
     clear_frame() # clearing the frame before placing the buttons hello and hi...
     image=Image.open("Akash.png")
     resized_image=image.resize((200,200))
@@ -865,20 +866,31 @@ def on_enter_contact(e):
     label= Label(frame_a,image=converted)
     label.image=converted
     label.place(x=0,y=0)
-
-    image=Image.open("Krishna.png")
-    resized_image=image.resize((200,200))
-    converted =ImageTk.PhotoImage(resized_image)
-    label= Label(frame_a,image=converted)
-    label.image=converted
-    label.place(x=235,y=0)
+    create_level(frame_a,"E-mail:  akash12@gmail.com",20,260)
+    create_level(frame_a,"Name:  Akash Chaudhary",20,220)
+    create_level(frame_a,"Contact:  9861545400",20,300)
 
     image=Image.open("Sabin.png")
     resized_image=image.resize((200,200))
     converted =ImageTk.PhotoImage(resized_image)
     label= Label(frame_a,image=converted)
     label.image=converted
-    label.place(x=470,y=0)
+    label.place(x=400,y=0)
+    create_level(frame_a,"E-mail:  sabin4312@gmail.com",420,260)
+    create_level(frame_a,"Name:  Sabin Khadka ",420,220)
+    create_level(frame_a,"Contact:  9861576561",420,300)
+
+
+    image=Image.open("Krishna.png")
+    resized_image=image.resize((200,200))
+    converted =ImageTk.PhotoImage(resized_image)
+    label= Label(frame_a,image=converted)
+    label.image=converted
+    label.place(x=800,y=0)
+    create_level(frame_a,"E-mail:  krishna12@gmail.com",820,260)
+    create_level(frame_a,"Name:  Krishna Bhandari",820,220)
+    create_level(frame_a,"Contact:  9881545410",820,300)
+   
 
 #Create frame when hovered over account frame
 def on_enter_account(e):
