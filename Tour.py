@@ -847,30 +847,29 @@ def on_enter_adventure(e):
 
 
 def on_enter_help(e):
-    frame_a.config(width=1100,height=200)
+    frame_a.config(width=1150,height=350)
     frame_a.place(x=700,y=70)
     clear_frame()
+    create_level(frame_a,"Problems",215,20)
+    create_level(frame_a,"Feedback",800,20)
+    create_level(frame_a,"Username",10,262)
+
     # clearing the frame before placing the buttons hello and hi...
-    create_level(frame_a, "Name",10,10)
-    name_entry=Entry(frame_a,width=29)
-    name_entry.place(x=10,y=50,height=23)
-    email_entry=Entry(frame_a,width=29)
-    email_entry.place(x=250,y=50,height=23)
-    contact_entry=Entry(frame_a,width=29)
-    contact_entry.place(x=500,y=50,height=23)
-    address_entry=Entry(frame_a,width=29)
-    address_entry.place(x=750,y=50,height=23)
-    create_level(frame_a, "Email",260,10)
-    create_level(frame_a, "Contact",510,10)
-    create_level(frame_a, "Address",760,10)
-    create_level(frame_a,"Problems",260,90)
-    create_level(frame_a,"Solutions",260,130)
-    problems_entry=Entry(frame_a,width=50)
-    problems_entry.place(x=400,y=90,height=23)
-    solutions_entry=Entry(frame_a,width=50)
-    solutions_entry.place(x=400,y=130,height=23)
-    # create_level(frame_a, "b",10,10)
-    # create_level(frame_a, "c",10,10)
+    problems_text=Text(frame_a,height=9,width=60,font=("Helvetica",12,"bold"))
+    problems_text.place(x=20,y=60)
+    feedback_text=Text(frame_a,height=9,width=60,font=("Helvetica",12,"bold"))
+    feedback_text.place(x=590,y=60)
+    username_entry=Entry(frame_a,width=63)
+    username_entry.place(x=120,y=260,height=35)
+    submit_button=Button(frame_a,text="Submit",font=("Arial",16,"bold"),width=15,bg="#FFFACD")
+    submit_button.place(x=600,y=260)
+    # create_button(frame_a,"Submit",460,300,formdetails)
+    # problems_entry=Entry(frame_a,width=50)
+    # problems_entry.place(x=400,y=90,height=23)
+    # solutions_entry=Entry(frame_a,width=50)
+    # solutions_entry.place(x=400,y=130,height=23)
+    #help and solution
+    
   
 def on_enter_contact(e):
     frame_a.config(width=700,height=500)
