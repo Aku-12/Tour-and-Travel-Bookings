@@ -72,7 +72,7 @@ def frame_user():
         global userName
         userName = None
         con = mysql.connect(host='localhost', user='root',
-                        password="password", port="3306", database='signup')
+                        password="12345", port="3306", database='signup')
         cursor = con.cursor()
         username1 = username_entry.get()
         a='select username from user where username=%s'
