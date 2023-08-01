@@ -2,31 +2,42 @@ from tkinter import *
 from PIL import Image,ImageTk
 from tkinter import messagebox
 root=Tk()
-root.geometry("1300x900")
+root.geometry("1500x900")
 root.resizable(0,0)
 root.config(bg="#4785CF")
 root.title("Sign Up Page")
 #signup widgets including labels entry fields and buttons
 
-create_label=Label(root,text="CREATE ACCOUNT",font=("Arial",23,"bold"),fg="blue")
-create_label.place(x=200,y=100)
-image=Image.open("tourMainBg.png")
-image_resize=image.resize((700,700))
-converted=ImageTk.PhotoImage(image_resize)
-label=Label(root,image=converted,bd=0,bg="#4785CF")
-label.place(x=580,y=50)
+
+
+image1=Image.open("tourMainBg.png")
+image_resize=image1.resize((850,700))
+converted1=ImageTk.PhotoImage(image_resize)
+label2=Label(root,image=converted1,bd=0,bg="#4785CF")
+label2.place(x=580,y=50)
+
 image1=PhotoImage(file="signup.png")
 label=Label(root,image=image1,bg="#4785CF",bd=0)
 label.place(x=30,y=100)
+image=Image.open("flight.png")
+image_resize=image.resize((70,70))
+converted=ImageTk.PhotoImage(image_resize)
+label1=Label(root,image=converted,bd=0,bg="#4785CF")
+label1.place(x=380,y=150)
+create_label=Label(root,text="CREATE ACCOUNT",font=("Arial",20,"bold"),fg="blue")
+create_label.place(x=300,y=100)
 def label1(text,x,y):
     label=Label(root,text=text,font=75,bd=0,bg="white")
     label.place(x=x,y=y)
+
+travel_label=Label(root,text="TOUR AND TRAVEL PVT.LTD",font=("Arial",25,"bold"),bg="#4785CF")
+travel_label.place(x=150,y=32)
 
 label1("Name •",150,220)
 label1("Email •",150,330)
 label1("Contact No •",150,440)
 label1("Address •",150,550)
-label1("Password •",520,220)
+label1("Username •",520,220)
 label1(" Confirm Password •",520,445)
 label1("Password •",520,330)
 
