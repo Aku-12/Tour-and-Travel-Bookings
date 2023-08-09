@@ -12,6 +12,8 @@ root.state("zoomed")
 
 root.title("Home Page")
 
+
+# create labels using function for efficiency of code by passing parameters and arguments
 def create_level(frame,text,x,y):
     label=Label(frame,text=text,font=("Arial",16,"bold"),bd=0,bg="#FFFACD")
     label.place(x=x,y=y)
@@ -21,12 +23,8 @@ def create_button(frame, text, x, y,ca): # creating the sub button function usin
     button.place(x=x, y=y)
     return button
 
-# def payment():
-#    root_book.destroy()
-#    a=Toplevel(root)
-#    a.pack() 
+
 def submit(): 
-  
     name = name_entry.get()
     address = address_entry.get()
     email= email_entry.get()
@@ -36,25 +34,33 @@ def submit():
     no_of_guides = guides_entry.get()
     start_date = a
     end_date = b
+
+    try:
+
  
-    if name=="" or address=="" or email=="" or contact_no=="" or destination=="" or no_of_visitors=="" or no_of_guides =="" or start_date=="" or end_date =="":
-        messagebox.showinfo("Insert status","All fields are required")
-    else:
-        con = mysql.connect(host="localhost",user="root",password="12345",database="form")
-        cursor = con.cursor()
-        cursor.execute('INSERT INTO details VALUES("'+name+'","'+ email +'","'+ contact_no +'","'+ address +'","'+destination+'","'+no_of_visitors+'","'+no_of_guides+'","'+start_date+'","'+end_date+'")')
-        messagebox.showinfo("Insert status","Form submitted successfully")
-        con.commit()
-        con.close()
-def select():
-    def get_selected_date():
+        if name=="" or address=="" or email=="" or contact_no=="" or destination=="" or no_of_visitors=="" or no_of_guides =="" or start_date==None or end_date==None :
+            messagebox.showerror("Insert status","All fields are required")
+        else:
+            con = mysql.connect(host="localhost",user="root",password="12345",database="form")
+            cursor = con.cursor()
+            cursor.execute('INSERT INTO details VALUES("'+name+'","'+ email +'","'+ contact_no +'","'+ address +'","'+destination+'","'+no_of_visitors+'","'+no_of_guides+'","'+start_date+'","'+end_date+'")')
+            messagebox.showinfo("Insert status","Form submitted successfully")
+            con.commit()
+            con.close()
+    except Exception as err:
+        messagebox.showerror("Input Error",err)
+        
+def select():  #displays the calendar inside booking interface
+
+    def get_selected_date():# select date from calendar using getselected command
         global a
+       
         a = cal.get_date()
         label.config(text="selected date"+cal.get_date())
 
         start_date.config(text=cal.get_date())
         root1.destroy()
-    root1 = Tk()
+    root1 = Tk()  # create a new window for a calendar
     root1.eval('tk::PlaceWindow . center')
     root1.title("Calendar Example")
 
@@ -68,9 +74,11 @@ def select():
     label=Label(root1,text="Selected date")
     label.pack(pady=5)
 
+
 def select1():
     def get_selected_date():
         global b
+        
         b = cal1.get_date()
         label.config(text="selected date"+cal1.get_date())
         end_date.config(text=cal1.get_date())
@@ -86,21 +94,11 @@ def select1():
     button.pack(pady=5)
     label=Label(root1,text="Selected date")
     label.pack(pady=5)
- 
-
-def booking():
    
-    #  global root_book
-    #  global frame_book
-    #  root_book=Toplevel(root)
-    #  root_book.geometry("1200x500")
-    #  root_book.resizable(0,0)
-    #  frame_book=Frame(root_book,width=700,height=320)
-    #  frame_book.place(x=300,y=100)
-    #  def booking():
-    #  '''Create a booking function which displays the form for filling details in order to book the respective tour'''
-    #  def exit():
-    #         root_book.destroy()
+
+def booking():   # displays the interface for booking tour after clicking book butotns
+   
+   
      global start_date
      global end_date
      global frame_book
@@ -112,41 +110,43 @@ def booking():
      global visitors_entry
      global guides_entry
      root_book=Toplevel(root)
+     root_book.config(bg="#FFFACD")
      root_book.geometry("1200x500")
      root_book.resizable(0,0)
-     frame_book=Frame(root_book,width=700,height=320)
+     frame_book=Frame(root_book,width=700,height=320,bg="#FFFACD")
      frame_book.place(x=300,y=100)
-
-     end_date=Button(frame_book,text="Select end date...",command=select1)
-     end_date.place(x=150,y=250)
-     start_date=Button(frame_book,text="Select start date...",command=select)
-     start_date.place(x=450,y=200)
-     but_Next=Button(frame_book,text="Submit",font=18,width=13,command=submit)
-     but_Next.place(x=350,y=240)
-     label_book1=Label(frame_book,text=" Tour Booking form",font=("Arial",24,"bold"))
-     label_book1.place(x=100,y=0)
-
      
+     # create buttons inside booking interface
+     end_date=Button(frame_book,text="Select end date...",command=select1,bg="light salmon")
+     end_date.place(x=150,y=250)
+     start_date=Button(frame_book,text="Select start date...",command=select,bg="light salmon")
+     start_date.place(x=450,y=200)
+     but_Next=Button(frame_book,text="Submit",font=18,width=13,command=submit,bg="medium aquamarine")
+     but_Next.place(x=350,y=240)
 
-
-     label_name=Label(frame_book,text="Full Name")
+     #Create labels inside the booking interface
+     label_book1=Label(frame_book,text=" Tour Booking form",font=("Arial",24,"bold"),bg="#FFFACD")
+     label_book1.place(x=100,y=0)
+     label_name=Label(frame_book,text="Full Name",bg="#FFFACD")
      label_name.place(x=0,y=50)
-     label_contact=Label(frame_book,text="Contact No")
+     label_contact=Label(frame_book,text="Contact No",bg="#FFFACD")
      label_contact.place(x=350,y=50)
-     label_email=Label(frame_book,text="Address")
+     label_email=Label(frame_book,text="Address",bg="#FFFACD")
      label_email.place(x=350,y=100)
-     label_address=Label(frame_book,text="Destination")
+     label_address=Label(frame_book,text="Destination",bg="#FFFACD")
      label_address.place(x=350,y=150)
-     label_surname=Label(frame_book,text="Email")
+     label_surname=Label(frame_book,text="Email",bg="#FFFACD")
      label_surname.place(x=0,y=100)
-     label_visitors=Label(frame_book,text="Number of Visitors")
+     label_visitors=Label(frame_book,text="Number of Visitors",bg="#FFFACD")
      label_visitors.place(x=0,y=150)
-     label_guides=Label(frame_book,text="Number of Tour Guides")
+     label_guides=Label(frame_book,text="Number of Tour Guides",bg="#FFFACD")
      label_guides.place(x=0,y=200)
-     label_startdate=Label(frame_book,text="End Date")
+     label_startdate=Label(frame_book,text="End Date",bg="#FFFACD")
      label_startdate.place(x=0,y=250)
-     label_enddate=Label(frame_book,text="Start Date")
+     label_enddate=Label(frame_book,text="Start Date",bg="#FFFACD")
      label_enddate.place(x=350,y=200)
+
+     # create entries inside the booking interface
      name_entry=Entry(frame_book)
      name_entry.place(x=150,y=50)
      email_entry=Entry(frame_book)
@@ -162,13 +162,13 @@ def booking():
      guides_entry=Entry(frame_book)
      guides_entry.place(x=150,y=200)
 
-def everest1():
+def everest1(): # craete interface for displaying the information regarding everest
     frame_a.config(width=1920,height=1080)
     frame_a.place(x=0,y=60)
     frame_a
-    clear_frame()
+    clear_frame()  # clear frames using this function
     
-
+    # place images inside everest interface
     image=Image.open("MountEverest.webp")
     resized_image=image.resize((960,550))
     converted =ImageTk.PhotoImage(resized_image)
@@ -185,6 +185,8 @@ def everest1():
     
     label=Label(frame_a,text="Everest Base Camp Trek",font=("Arial",18,"bold"),fg="blue",bg="#FFFACD")
     label.place(x=30,y=580)
+
+    # create labels calling the function by passing arguments
     create_level(frame_a,"From Kathmandu to Solukhumbu",540,580)
     create_level(frame_a,"Tour Language\nEnglish, Nepali",420,635)
     create_level(frame_a,"Age Group \n12-75",640,635)
@@ -517,24 +519,24 @@ def nagarkot():
      label.image=converted
      label.place(x=600,y=600)
     
-     label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1480,y=10)
-     label_pokhara_overview=Label(frame_a,text="Nagarkot Dhulikhel Trek is one of the most popular\n trekking outside Kathmandu. Nagarkot is located just \n35km far from Kathmandu. We recommend you to\n take Nagarkot and Dhulikhel Trek if you are looking for\n short treks in Nepal. The nearest hill station from\n Kathmandu- Nagarkot view tower offers spectacular\n views of Central Himalaya including Langtang Mountain,\n Gaurishankar Mountain,Ganesh Mountain and Manaslu.",font=("calibri",21,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1220,y=55)
-     label_pokhara_overview=Label(frame_a,text="Price\nRs 6000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=330)
+     label_nagarkot_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
+     label_nagarkot_overview.place(x=1480,y=10)
+     label_nagarkot_overview=Label(frame_a,text="Nagarkot Dhulikhel Trek is one of the most popular\n trekking outside Kathmandu. Nagarkot is located just \n35km far from Kathmandu. We recommend you to\n take Nagarkot and Dhulikhel Trek if you are looking for\n short treks in Nepal. The nearest hill station from\n Kathmandu- Nagarkot view tower offers spectacular\n views of Central Himalaya including Langtang Mountain,\n Gaurishankar Mountain,Ganesh Mountain and Manaslu.",font=("calibri",21,"bold"),bg="#FFFACD")
+     label_nagarkot_overview.place(x=1220,y=55)
+     label_nagarkot_overview=Label(frame_a,text="Price\nRs 6000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_nagarkot_overview.place(x=1380,y=330)
     
-     label_pokhara_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1360,y=410)
-     label_pokhara_overview=Label(frame_a,text="\tDuration \t\t \n 6-8 hrs minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=480)
-     label_pokhara_overview=Label(frame_a,text="The above price includes:\n\t\tBreakfast,Meal\n\t\tPhotos and videos\n\t\tGovernmentTaxes\n\t\t Insurance package\n\t\t Pickup transport    ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1220,y=570)
+     label_nagarkot_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_nagarkot_overview.place(x=1360,y=410)
+     label_nagarkot_overview=Label(frame_a,text="\tDuration \t\t \n 6-8 hrs minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_nagarkot_overview.place(x=1380,y=480)
+     label_nagarkot_overview=Label(frame_a,text="The above price includes:\n\t\tBreakfast,Meal\n\t\tPhotos and videos\n\t\tGovernmentTaxes\n\t\t Insurance package\n\t\t Pickup transport    ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_nagarkot_overview.place(x=1220,y=570)
      book_button=Button(frame_a,text="Reserve Your Ticket",font=("Arial",19,"bold"),bg="#FFFACD",command=booking)
      book_button.place(x=1450,y=790)
      create_level(frame_a,"Click above buttons to reserve your seat ",1350,850)
-     label_pokhara_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1230,y=900)
+     label_nagarkot_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
+     label_nagarkot_overview.place(x=1230,y=900)
 
 
 
@@ -563,24 +565,24 @@ def koshi():
      label.image=converted
      label.place(x=600,y=600)
     
-     label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1480,y=10)
-     label_pokhara_overview=Label(frame_a,text="Bhote Koshi river rafting provide the closet Grade \nIV to V whitewater rafting experience on an extremely\n powerful rapid and whirlpool. Bhote Koshi river originates\n from the Tibetan plateau, which can easily access \nbecause it is not so away from Kathmandu. Bhote Koshi \nrafting is one of the best whitewater river rafting in \nthe world with full of excitement and fun.",font=("calibri",21,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1230,y=55)
-     label_pokhara_overview=Label(frame_a,text="Price\nRs 13000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=330)
+     label_koshi_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
+     label_koshi_overview.place(x=1480,y=10)
+     label_koshi_overview=Label(frame_a,text="Bhote Koshi river rafting provide the closet Grade \nIV to V whitewater rafting experience on an extremely\n powerful rapid and whirlpool. Bhote Koshi river originates\n from the Tibetan plateau, which can easily access \nbecause it is not so away from Kathmandu. Bhote Koshi \nrafting is one of the best whitewater river rafting in \nthe world with full of excitement and fun.",font=("calibri",21,"bold"),bg="#FFFACD")
+     label_koshi_overview.place(x=1230,y=55)
+     label_koshi_overview=Label(frame_a,text="Price\nRs 13000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_koshi_overview.place(x=1380,y=330)
     
-     label_pokhara_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1360,y=410)
-     label_pokhara_overview=Label(frame_a,text="\tDuration \t\t \n 20 to 30 minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=480)
-     label_pokhara_overview=Label(frame_a,text="The above price includes:\n\t\tLife Jacket to overcome risk\n\t\tPhotos and videos\n\t\tGovernmentTaxes\n\t\t Insurance package\n\t\t Pickup transport    ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1220,y=570)
+     label_koshi_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_koshi_overview.place(x=1360,y=410)
+     label_koshi_overview=Label(frame_a,text="\tDuration \t\t \n 20 to 30 minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_koshi_overview.place(x=1380,y=480)
+     label_koshi_overview=Label(frame_a,text="The above price includes:\n\t\tLife Jacket to overcome risk\n\t\tPhotos and videos\n\t\tGovernmentTaxes\n\t\t Insurance package\n\t\t Pickup transport    ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_koshi_overview.place(x=1220,y=570)
      book_button=Button(frame_a,text="Reserve Your Ticket",font=("Arial",19,"bold"),bg="#FFFACD",command=booking)
      book_button.place(x=1450,y=790)
      create_level(frame_a,"Click above buttons to reserve your seat ",1350,850)
-     label_pokhara_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1230,y=900)
+     label_koshi_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
+     label_koshi_overview.place(x=1230,y=900)
 
 
 
@@ -610,24 +612,24 @@ def bhotekoshi():
      label.image=converted
      label.place(x=600,y=600)
     
-     label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1480,y=10)
-     label_pokhara_overview=Label(frame_a,text="Bungee jumping activity found its first ever spot at the\n Bhote Koshi gorge in Nepal. And now it is one of \nthe most famous spots for bungee jumping in the\n whole world. The gorge is located near Nepal-Tibet \nborder and has a height of 160 meters. What makes\n it special is the fact that is the highest bungee jumping\n in Nepal as well as the world. Flowing below the jump \nis the Bhote Koshi river which will give you the extra fun.",font=("calibri",21,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1240,y=55)
-     label_pokhara_overview=Label(frame_a,text="Price\nRs 13000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=343)
+     label_bhotekoshi_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1480,y=10)
+     label_bhotekoshi_overview=Label(frame_a,text="Bungee jumping activity found its first ever spot at the\n Bhote Koshi gorge in Nepal. And now it is one of \nthe most famous spots for bungee jumping in the\n whole world. The gorge is located near Nepal-Tibet \nborder and has a height of 160 meters. What makes\n it special is the fact that is the highest bungee jumping\n in Nepal as well as the world. Flowing below the jump \nis the Bhote Koshi river which will give you the extra fun.",font=("calibri",21,"bold"),bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1240,y=55)
+     label_bhotekoshi_overview=Label(frame_a,text="Price\nRs 13000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1380,y=343)
     
-     label_pokhara_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1360,y=410)
-     label_pokhara_overview=Label(frame_a,text="\tDuration \t\t \n 20 to 30 minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=480)
-     label_pokhara_overview=Label(frame_a,text="The above price includes:\n\t\tBunjee Ticket\n\t\tPhotos and videos\n\t\tGovernmentTaxes\n\t\t\tPickup transport\t\t    ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1220,y=570)
+     label_bhotekoshi_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1360,y=410)
+     label_bhotekoshi_overview=Label(frame_a,text="\tDuration \t\t \n 20 to 30 minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1380,y=480)
+     label_bhotekoshi_overview=Label(frame_a,text="The above price includes:\n\t\tBunjee Ticket\n\t\tPhotos and videos\n\t\tGovernmentTaxes\n\t\t\tPickup transport\t\t    ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1220,y=570)
      book_button=Button(frame_a,text="Reserve Your Ticket",font=("Arial",19,"bold"),bg="#FFFACD",command=booking)
      book_button.place(x=1450,y=790)
      create_level(frame_a,"Click above buttons to reserve your seat ",1350,850)
-     label_pokhara_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1230,y=900)
+     label_bhotekoshi_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
+     label_bhotekoshi_overview.place(x=1230,y=900)
 
 
 
@@ -656,24 +658,24 @@ def mounteverest():
      label.image=converted
      label.place(x=600,y=600)
     
-     label_pokhara_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1480,y=10)
-     label_pokhara_overview=Label(frame_a,text="The Everest region in Nepal is more than just climbing \nand trekking, it is a life-changing experience and some\n see it as a journey close to achieving Nirvana,Located\n in the northeastern province of Nepal, this region is \nin a world of its own with vast glaciers, icefalls, the \nhighest mountains, deep valleys, precarious settlem-\nents, and hardy people challenging the harshest conditions \nthrown at them by nature in the thin air of high altitude.\t ",font=("calibri",21,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1210,y=55)
-     label_pokhara_overview=Label(frame_a,text="Price\nRs 4000000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=330)
+     label_everest_overview=Label(frame_a,text="Overview",font=("arial",26,"bold"),fg="grey",bg="#FFFACD")
+     label_everest_overview.place(x=1480,y=10)
+     label_everest_overview=Label(frame_a,text="The Everest region in Nepal is more than just climbing \nand trekking, it is a life-changing experience and some\n see it as a journey close to achieving Nirvana,Located\n in the northeastern province of Nepal, this region is \nin a world of its own with vast glaciers, icefalls, the \nhighest mountains, deep valleys, precarious settlem-\nents, and hardy people challenging the harshest conditions \nthrown at them by nature in the thin air of high altitude.\t ",font=("calibri",21,"bold"),bg="#FFFACD")
+     label_everest_overview.place(x=1210,y=55)
+     label_everest_overview=Label(frame_a,text="Price\nRs 4000000 per individual ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_everest_overview.place(x=1380,y=330)
     
-     label_pokhara_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1360,y=410)
-     label_pokhara_overview=Label(frame_a,text="\tDuration \t\t \n 20 to 30 minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1380,y=480)
-     label_pokhara_overview=Label(frame_a,text="The above price includes:\n\t\tCamping tent with amenities\n\t\tPhotos and videos\t\t\n\t\tGovernment Authority          \n\t\t Insurance package               ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
-     label_pokhara_overview.place(x=1230,y=570)
+     label_everest_overview=Label(frame_a,text="\tOpen hours    \n 6:00 AM to 6:00 PM",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_everest_overview.place(x=1360,y=410)
+     label_everest_overview=Label(frame_a,text="\tDuration \t\t \n 20 to 30 minutes",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_everest_overview.place(x=1380,y=480)
+     label_everest_overview=Label(frame_a,text="The above price includes:\n\t\tCamping tent with amenities\n\t\tPhotos and videos\t\t\n\t\tGovernment Authority          \n\t\t Insurance package               ",font=("arial",21,"bold"),fg="grey",bg="#FFFACD")
+     label_everest_overview.place(x=1230,y=570)
      book_button=Button(frame_a,text="Reserve Your Ticket",font=("Arial",19,"bold"),bg="#FFFACD",command=booking)
      book_button.place(x=1450,y=790)
      create_level(frame_a,"Click above buttons to reserve your seat ",1350,850)
-     label_pokhara_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
-     label_pokhara_overview.place(x=1230,y=900)
+     label_everest_overview=Label(frame_a,text="'Live a life by experiencing an adventerous sports'",font=("calibri",22,"bold"),bg="#FFFACD")
+     label_everest_overview.place(x=1230,y=900)
 
 
 topFrame = Frame(root, width = 1920, height = 680, bg = "#FFFACD")
@@ -819,17 +821,23 @@ def submit3():
     problems_text1 = problems_text.get("1.0", "end-1c")
     feedback_text1 = feedback_text.get("1.0", "end-1c")
     username1= username_entry.get()
-    con = mysql.connect(host="localhost",user="root",password="12345",database="help")
-    cursor = con.cursor()
-    cursor.execute('INSERT INTO feed VALUES("'+username1+'","'+problems_text1+'","'+feedback_text1+'")')
-    r='INSERT INTO feed VALUES("'+username1+'","'+problems_text1+'","'+feedback_text1+'")'
-    print(r)
-    if problems_text1=="" or feedback_text1 == "" or username1=="":
-            messagebox.showerror("Error","All Fields are required")
-    else:
-            messagebox.showinfo("Success","Data submitted successfully")
-    con.commit()
-    con.close()
+
+    try:
+        con = mysql.connect(host="localhost", user="root", password="12345", database="help")
+        cursor = con.cursor()
+        cursor.execute('INSERT INTO feed VALUES("' + username1 + '","' + problems_text1 + '","' + feedback_text1 + '")')
+        if problems_text1 == "" or feedback_text1 == "" or username1 == "":
+            messagebox.showerror("Error", "All Fields are required")
+        else:
+            messagebox.showinfo("Success", "Data submitted successfully")
+        con.commit()
+    except mysql.Error as err:
+        messagebox.showerror("Database Error", f"An error occurred: {err}")
+    finally:
+        if con.is_connected():
+            cursor.close()
+            con.close()
+
      
 def hi():
     clear_frame() 
@@ -854,7 +862,7 @@ def on_enter_home():
 def on_enter_destination(e):
     frame_a.config(width=1600,height=150)
     frame_a.place(x=300,y=70)
-    clear_frame() # clearing the frame before placing the buttons hello and hi...
+    clear_frame() # clearing the frame before placing the buttons 
 
     create_level(frame_a, "Koshi Province",10,10)
     create_level(frame_a, "Madhesh Province",215,10) 
@@ -872,20 +880,19 @@ def on_enter_destination(e):
     create_button(frame_a, "Rara Lake", 1090, 80 ,rara)
     create_button(frame_a, "Khaptad",1320 , 80 ,khaptad)
 
-
-
-
 def on_enter_adventure(e):
     frame_a.config(width=1200)
     frame_a.config(height=150)
     frame_a.place(x=300,y=70)
-    clear_frame() # clearing the frame before placing the buttons hello and hi...
+    clear_frame() # clearing the frame before placing the buttons 
+    # create labels calling the function
     create_level(frame_a, "Paragliding",10,10)
     create_level(frame_a, "Trekking",260,10)
     create_level(frame_a, "Rafting",510,10)
     create_level(frame_a,  "Bungee Jumping",730,10)
     create_level(frame_a, "Mountaineering",1010,10)
-    
+
+    #create buttons calling the function
     create_button(frame_a, "Pokhara Sarangkot", 5, 60,pokhara) # passing the arguments to the parameter... 
     create_button(frame_a, "Nagarkot", 260, 60 ,nagarkot)
     create_button(frame_a, "Koshi Rafting", 505, 60 ,koshi)
@@ -904,7 +911,7 @@ def on_enter_help(e):
     create_level(frame_a,"Feedback",800,20)
     create_level(frame_a,"Username",10,262)
 
-    # clearing the frame before placing the buttons hello and hi...
+    # clearing the frame before placing the buttons
     problems_text=Text(frame_a,height=9,width=60,font=("Helvetica",12,"bold"))
     problems_text.place(x=20,y=60)
     feedback_text=Text(frame_a,height=9,width=60,font=("Helvetica",12,"bold"))
@@ -914,14 +921,11 @@ def on_enter_help(e):
     submit_button=Button(frame_a,text="Submit",font=("Arial",16,"bold"),width=15,bg="#FFFACD",command=submit3)
     submit_button.place(x=600,y=260)
 
-    
-    
-  
 def on_enter_contact(e):
     
     frame_a.config(width=1160,height=400)
     frame_a.place(x=600,y=70)
-    clear_frame() # clearing the frame before placing the buttons hello and hi...
+    clear_frame() # clearing the frame before placing the buttons
     image=Image.open("Akash.png")
     resized_image=image.resize((200,200))
     converted =ImageTk.PhotoImage(resized_image)
@@ -974,7 +978,7 @@ def create_main_button(buttonFrame, text, x , y, cmd):
         
     return button
 
-def clear_frame(): # Line 12 and 22 are the functionality provided by this function...
+def clear_frame(): # are the functionality provided by this function...
     for widget in frame_a.winfo_children(): # fetches the information/name of buttons created in the frames...
         widget.destroy() # triggering the deletion of buttons that are already in there...
 buttons = []
