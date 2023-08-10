@@ -13,22 +13,15 @@ root.resizable(0,0)
 root.title("Login Page")
 root.config(bg = "#4785CF")
 
-
-
-
-
 # calling the login function whenever user clicks on already have an account aka login...
 def backLogin():
     root.destroy()
     import loginui
 
-
-
 # calling the signup function whenver user clicks on don't have an account aka create one...
 def backSignup():
     root.destroy()
     import finalsignin
-
 
 # to check the user details, using database fetching for user validation...
 def loginFunc():
@@ -47,8 +40,8 @@ def loginFunc():
         messagebox.showerror("error","Invalid login")
     else:
         messagebox.showinfo("sucess","Logged in successfully")
-
-
+    con.commit()
+    con.close()
 
 # all the images that have been used in creating login page...
 imageBackground = Image.open("tourMainBg.png")

@@ -36,8 +36,6 @@ def submit():
     end_date = b
 
     try:
-
- 
         if name=="" or address=="" or email=="" or contact_no=="" or destination=="" or no_of_visitors=="" or no_of_guides =="" or start_date==None or end_date==None :
             messagebox.showerror("Insert status","All fields are required")
         else:
@@ -47,7 +45,7 @@ def submit():
             messagebox.showinfo("Insert status","Form submitted successfully")
             con.commit()
             con.close()
-    except Exception as err:
+    except mysql.Error as err:
         messagebox.showerror("Input Error",err)
         
 def select():  #displays the calendar inside booking interface
@@ -96,8 +94,7 @@ def select1():
     label.pack(pady=5)
    
 
-def booking():   # displays the interface for booking tour after clicking book butotns
-   
+def booking():   # displays the interface for booking tour after clicking book buttons
    
      global start_date
      global end_date

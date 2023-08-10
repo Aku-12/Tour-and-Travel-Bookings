@@ -226,16 +226,16 @@ def frame_user():
             font=("poppins", 12)).place(x=240, y=d)
         d = d+40
         Label(frame_user_data, text=b[2], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=440, y=e)
+            font=("poppins", 12)).place(x=400, y=e)
         e = e+40
         Label(frame_user_data, text=b[3], bg='medium aquamarine',fg ="navy",
             font=("poppins", 12)).place(x=610, y=f)
         f = f+40       
         Label(frame_user_data, text=b[4], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=810, y=g)
+            font=("poppins", 12)).place(x=780, y=g)
         g = g+40
         Label(frame_user_data, text=b[5], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=1010, y=h)
+            font=("poppins", 12)).place(x=990, y=h)
         h = h+40
     username_label=Label(frame_all,text="Username",font=16,bg="#FFFACD")
     username_label.place(x=290,y=0)
@@ -315,19 +315,19 @@ def frame_formdetails():
     name_label.place(x=160,y=12)
     name_label=Label(frame_form_label,text="Contact No",fg ="blue",
             font=("poppins", 13),bg="lightsalmon")
-    name_label.place(x=270,y=12)
+    name_label.place(x=320,y=12)
     name_label=Label(frame_form_label,text="Address",fg ="blue",
             font=("poppins", 13),bg="lightsalmon")
-    name_label.place(x=390,y=12)
+    name_label.place(x=455,y=12)
     name_label=Label(frame_form_label,text="Destination",fg ="blue",
             font=("poppins", 13),bg="lightsalmon")
-    name_label.place(x=500,y=12)
-    name_label=Label(frame_form_label,text="No.of Visitors",fg ="blue",
+    name_label.place(x=570,y=12)
+    name_label=Label(frame_form_label,text="Visitors",fg ="blue",
             font=("poppins", 13),bg="lightsalmon")
-    name_label.place(x=630,y=12)
-    name_label=Label(frame_form_label,text="No.of Tour Guides",fg ="blue",
+    name_label.place(x=710,y=12)
+    name_label=Label(frame_form_label,text="Tour Guides",fg ="blue",
             font=("poppins", 13),bg="lightsalmon")
-    name_label.place(x=765,y=12)
+    name_label.place(x=790,y=12)
     name_label=Label(frame_form_label,text="Start Date",fg ="blue",
             font=("poppins", 13),bg="lightsalmon")
     name_label.place(x=930,y=12)
@@ -358,22 +358,22 @@ def frame_formdetails():
     for i in a:
         b = list(i)
         Label(frame_user, text=b[0], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=40, y=c)
+            font=("poppins", 12)).place(x=0, y=c)
         c = c+40
         Label(frame_user, text=b[1], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=170, y=d)
+            font=("poppins", 12)).place(x=140, y=d)
         d = d+40
         Label(frame_user, text=b[2], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=300, y=e)
+            font=("poppins", 12)).place(x=320, y=e)
         e = e+40
         Label(frame_user, text=b[3], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=410, y=f)
+            font=("poppins", 12)).place(x=450, y=f)
         f = f+40       
         Label(frame_user, text=b[4], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=540, y=g)
+            font=("poppins", 12)).place(x=580, y=g)
         g = g+40
         Label(frame_user, text=b[5], bg='medium aquamarine',fg ="navy",
-            font=("poppins", 12)).place(x=680, y=h)
+            font=("poppins", 12)).place(x=730, y=h)
         h = h+40
         Label(frame_user, text=b[6], bg='medium aquamarine',fg ="navy",
             font=("poppins", 12)).place(x=820, y=j)
@@ -407,6 +407,7 @@ button_form_details.place(x=0,y=340)
 
 frame_all.place(x=260,y=60)  # place the global frame to insert picture inside this frame
 image=Image.open("dash1.png")
+
 image_resize=image.resize((1300,1300))
 converted=ImageTk.PhotoImage(image_resize)
 label=Label(frame_all,image=converted)
