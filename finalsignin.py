@@ -17,19 +17,21 @@ def signup():
     address1 = address_entry.get()
     contact_no1 = contact_entry.get()
     password = password_entry.get()
-    con = mysql.connect(host="localhost",user="root",password="12345",database="signup")
-    cursor = con.cursor()
-    cursor.execute('INSERT INTO user VALUES("'+name1+'","'+ username1 +'","'+ email1 +'","'+ address1 +'","'+ contact_no1 +'","'+password+'")')
-    if password_entry.get()==confirm_password_entry.get():
-        if name1=="" or username1 == "" or email1=="" or address1=="" or contact_no1=="" or password=="":
-            messagebox.showerror("Error","All Fields are required")
+    try:
+        con = mysql.connect(host="localhost",user="root",password="12345",database="signup")
+        cursor = con.cursor()
+        cursor.execute('INSERT INTO user VALUES("'+name1+'","'+ username1 +'","'+ email1 +'","'+ address1 +'","'+ contact_no1 +'","'+password+'")')
+        if password_entry.get()==confirm_password_entry.get():
+            if name1=="" or username1 == "" or email1=="" or address1=="" or contact_no1=="" or password=="":
+                messagebox.showerror("Error","All Fields are required")
+            else:
+                messagebox.showinfo("Success","Created account Successfully")
         else:
-            messagebox.showinfo("Success","Created account Successfully")
-    else:
-        messagebox.showerror("Error","password mismatched")
-
-    con.commit()
-    con.close()
+            messagebox.showerror("Error","password mismatched")
+        con.commit()
+        con.close()
+    except mysql.Error as err:
+        messagebox.showerror("Database Error",err)
 
 
 # create image inside the label as background
@@ -89,7 +91,7 @@ address_entry=Entry(label1,width=27,bd=0,bg="#d6d6d6", font = ('Tahoma', 12),tex
 address_entry.place(x=98,y=464,height=38)
 
 username_entry=Entry(label1,width=27,bd=0,bg="#d6d6d6", font = ('Tahoma', 12))
-username_entry.place(x=508,y=179,height=38)
+username_entry.place(x=508,y=175,height=38)
 password_entry_var=StringVar()
 password_entry=Entry(label1,width=27,bd=0,bg="#d6d6d6", font = ('Tahoma', 12),textvariable=password_entry_var,show="*")
 password_entry.place(x=508,y=270,height=38)
@@ -102,6 +104,7 @@ confirm_password_entry.place(x=508,y=369,height=38)
 def login():
     root.destroy()
     import loginui
+
 buttons=[]  # create empty buttons
 def createbutton(text,x,y,cmd,font,bg,bd): # create function to create multiple buttons using code efficency
     button=Button(label1,text=text,command=cmd,font=font,bg=bg,bd=bd,relief=GROOVE,fg="#00FF00")
