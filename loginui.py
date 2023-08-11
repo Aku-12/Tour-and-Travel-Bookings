@@ -53,7 +53,6 @@ iconLogin = ImageTk.PhotoImage(loginIcon)
 entryImageLogin = Image.open("entryImageLogin.png")
 imageEntryLogin = ImageTk.PhotoImage(entryImageLogin)
 
-
 buttonImage = Image.open("button.png")
 imageButton = ImageTk.PhotoImage(buttonImage)
 

@@ -21,9 +21,7 @@ def create_level(frame,text,x,y):
 def create_button(frame, text, x, y,ca): # creating the sub button function using parameter
     button = Button(frame, text=text, font=("Tahoma", 14, "bold"), border=0,fg="#8B7355" ,cursor="hand2", bg = "#FFFACD",command=ca)
     button.place(x=x, y=y)
-    return button
-
-
+    
 def submit(): 
     name = name_entry.get()
     address = address_entry.get()
@@ -64,7 +62,7 @@ def select():  #displays the calendar inside booking interface
 
 
 # Create a Calendar widget
-    cal = Calendar(root1, mindate=datetime(2023,9,30),selectmode='day', date_pattern='yyyy-mm-dd',g="blue")
+    cal = Calendar(root1, mindate=datetime(2023,9,30),selectmode='day', date_pattern='yyyy-mm-dd',bg="blue")
     cal.pack(padx=10, pady=10)
     cal.bind("<<CalendarSelected>>")
     button = Button(root1, text="Get Selected Date", command=get_selected_date)
@@ -162,7 +160,6 @@ def booking():   # displays the interface for booking tour after clicking book b
 def everest1(): # craete interface for displaying the information regarding everest
     frame_a.config(width=1920,height=1080)
     frame_a.place(x=0,y=60)
-    frame_a
     clear_frame()  # clear frames using this function
     
     # place images inside everest interface
@@ -206,7 +203,6 @@ def everest1(): # craete interface for displaying the information regarding ever
 def janakpur():
     frame_a.config(width=1920,height=1080)
     frame_a.place(x=0,y=60)
-    frame_a
     clear_frame()
    
 
@@ -967,12 +963,9 @@ def on_enter_account(e):
 def create_main_button(buttonFrame, text, x , y, cmd):
     
     button = Button(buttonFrame, text=text, font = ("Tahoma", 14, "bold"), border = 0, bg = "#FFFACD", cursor = "hand2", command = cmd)
-    
     button.bind("<Enter>", cmd)
-    # button.bind("<Leave>", on_frame_leave)
     button.place(x=x, y=y)
-    
-        
+      
     return button
 
 def clear_frame(): # are the functionality provided by this function...
